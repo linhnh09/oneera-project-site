@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://linhnh09.github.io/oneera-project-site/sitemap-index.xml
+
