@@ -1,0 +1,20 @@
+---
+import { project } from "../data/project";
+import { withBase } from "../lib/url";
+
+const [year, month, day] = project.lastUpdated.split("-");
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <strong>{project.siteName}</strong>
+      <p>{project.disclaimer}</p>
+      <p>Cập nhật nội dung: {day}/{month}/{year}.</p>
+    </div>
+    <nav aria-label="Chân trang">
+      <a href={project.officialSiteUrl} rel="noopener noreferrer">oneera.com.vn</a>
+      <a href={withBase("privacy")}>Chính sách riêng tư</a>
+    </nav>
+  </div>
+</footer>

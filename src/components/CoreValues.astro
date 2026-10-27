@@ -1,0 +1,21 @@
+---
+import { project } from "../data/project";
+---
+
+<section class="section values" id="gia-tri" aria-labelledby="values-title">
+  <div class="container">
+    <p class="eyebrow">Giá trị cốt lõi</p>
+    <h2 class="title" id="values-title">Ba mạch của khu đô thị</h2>
+    <ol class="value-list">
+      {
+        project.coreValues.map((value) => (
+          <li>
+            <span>{value.index}</span>
+            <h3>{value.title}</h3>
+            <p>{value.summary}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+---
+import { project } from "../data/project";
+import { canonicalPath, withBase } from "../lib/url";
+import "../styles/global.css";
+import "../styles/components.css";
+
+interface Props {
+  title: string;
+  description: string;
+  preloadImage?: string;
+  solidHeader?: boolean;
+}
+
+const { title, description, preloadImage, solidHeader = false } = Astro.props;
+const canonical = new URL(canonicalPath(Astro.url.pathname), Astro.site ?? Astro.url);
+const image = preloadImage ? new URL(withBase(preloadImage), Astro.site).href : undefined;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description,
+  url: canonical.href,
+  inLanguage: "vi",
+  dateModified: project.lastUpdated,
+  isBasedOn: project.officialSiteUrl,
+};
+---
+
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#1c3b32" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:site_name" content={project.siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {image && <meta name="twitter:image" content={image} />}
+    <link rel="icon" type="image/svg+xml" href={withBase("favicon.svg")} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,480;8..60,560;8..60,650&display=swap"
+      rel="stylesheet"
+    />
+    {image && preloadImage && <link rel="preload" as="image" href={withBase(preloadImage)} />}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class={solidHeader ? "has-solid-header" : undefined}>
+    <a class="skip-link" href="#noi-dung">Tới nội dung</a>
+    <slot />
+    <script>
+      import "../scripts/site.ts";
+    </script>
+  </body>
+</html>

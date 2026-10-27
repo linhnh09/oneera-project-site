@@ -1,0 +1,21 @@
+---
+import { awards } from "../data/awards";
+---
+
+{
+  awards.length > 0 && (
+    <section class="section" id="giai-thuong" aria-labelledby="awards-title">
+      <div class="container">
+        <p class="eyebrow">Giải thưởng</p>
+        <h2 class="title" id="awards-title">Ghi nhận đã xác minh</h2>
+        <ul class="names">
+          {awards.map((award) => (
+            <li>
+              {award.year} — {award.name}, {award.organization}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

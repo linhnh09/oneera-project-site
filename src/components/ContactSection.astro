@@ -1,0 +1,60 @@
+---
+import LeadForm from "./LeadForm.astro";
+import { project, telHref } from "../data/project";
+import { withBase } from "../lib/url";
+
+const channels = [
+  project.contactPhone
+    ? { label: "Điện thoại", value: project.contactPhone, href: telHref(project.contactPhone) }
+    : null,
+  project.zaloUrl ? { label: "Zalo", value: "Mở cuộc trò chuyện", href: project.zaloUrl } : null,
+  project.contactEmail
+    ? { label: "Email", value: project.contactEmail, href: `mailto:${project.contactEmail}` }
+    : null,
+  project.officeAddress ? { label: "Văn phòng", value: project.officeAddress, href: "" } : null,
+].filter((item) => item !== null);
+---
+
+<section class="section" id="lien-he" aria-labelledby="contact-title">
+  <div class="container contact-grid">
+    <div>
+      <p class="eyebrow">Liên hệ</p>
+      <h2 class="title" id="contact-title">Hỏi tại kênh chính thức</h2>
+      <p class="lede">
+        Trang này không nhận đăng ký hộ chủ đầu tư và không báo đã gửi thành công khi chưa có nơi nhận.
+      </p>
+      <div class="contact-actions">
+        <a class="button" href={project.officialSiteUrl} rel="noopener noreferrer">Mở website chính thức</a>
+        <a class="button secondary" href={withBase("privacy")}>Chính sách riêng tư</a>
+      </div>
+      {
+        channels.length > 0 && (
+          <dl class="contact-channels">
+            {channels.map((channel) => (
+              <div>
+                <dt>{channel.label}</dt>
+                <dd>
+                  {channel.href ? (
+                    <a href={channel.href} rel={channel.href.startsWith("http") ? "noopener noreferrer" : undefined}>
+                      {channel.value}
+                    </a>
+                  ) : (
+                    channel.value
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
+    </div>
+    <LeadForm />
+    {
+      !project.contactEmail.trim() && (
+        <p class="contact-note">
+          Chưa cấu hình số điện thoại, Zalo hay email trên trang này. Vì vậy không có biểu mẫu đăng ký. Mọi thông tin dự án nên xem và gửi tại oneera.com.vn.
+        </p>
+      )
+    }
+  </div>
+</section>

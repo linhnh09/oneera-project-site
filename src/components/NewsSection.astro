@@ -1,0 +1,24 @@
+---
+import { news } from "../data/news";
+---
+
+{
+  news.length > 0 && (
+    <section class="section" id="tin-tuc" aria-labelledby="news-title">
+      <div class="container">
+        <p class="eyebrow">Tin tức</p>
+        <h2 class="title" id="news-title">Câu chuyện dự án</h2>
+        <div class="explore">
+          {news.map((item) => (
+            <a href={item.href}>
+              <h3>{item.title}</h3>
+              <p>
+                {item.kicker} · {item.date}
+              </p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

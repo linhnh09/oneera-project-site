@@ -1,0 +1,28 @@
+---
+import { project } from "../data/project";
+import { withBase } from "../lib/url";
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__media">
+    <img
+      src={withBase("images/hero/skyline.webp")}
+      alt="Ảnh minh họa các khối nhà cao tầng, không phải toàn cảnh One Era."
+      width="2000"
+      height="1250"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+  <div class="hero__shade"></div>
+  <div class="hero__content">
+    <p class="eyebrow">{project.heroEyebrow}</p>
+    <h1 id="hero-title">{project.heroTitle}</h1>
+    <p class="hero__subtitle">{project.heroSubtitle}</p>
+    <div class="hero__meta">
+      <a class="button" href="#tong-quan">Xem tổng quan</a>
+      <a class="button secondary" href={project.officialSiteUrl} rel="noopener noreferrer">Mở oneera.com.vn</a>
+      <p class="photo-note">Ảnh minh họa, không phải phối cảnh dự án</p>
+    </div>
+  </div>
+</section>

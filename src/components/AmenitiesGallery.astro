@@ -1,0 +1,53 @@
+---
+import { amenities } from "../data/amenities";
+import { withBase } from "../lib/url";
+---
+
+<section class="section" id="tien-ich" aria-labelledby="amenities-title" data-carousel>
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Hệ tiện ích</p>
+      <h2 class="title" id="amenities-title">Những tên đã được công bố</h2>
+      <p>Ba tên xuất hiện trong khối tiện ích trên trang chủ chính thức. Bấm ảnh để xem lớn hơn. Ảnh không thuộc dự án.</p>
+    </div>
+    <div class="carousel__controls">
+      <button type="button" data-carousel-prev aria-label="Tiện ích trước">←</button>
+      <button type="button" data-carousel-next aria-label="Tiện ích sau">→</button>
+    </div>
+  </div>
+  <div class="carousel__track" data-carousel-track tabindex="0" aria-label="Danh sách tiện ích">
+    {
+      amenities.map((item) => (
+        <figure class="amenity" data-slide id={item.id}>
+          <button
+            type="button"
+            aria-label={item.imageAlt}
+            data-lightbox-open
+            data-src={withBase(item.image)}
+            data-alt={item.imageAlt}
+            data-width={item.width}
+            data-height={item.height}
+          >
+            <img
+              src={withBase(item.image)}
+              alt={item.imageAlt}
+              width={item.width}
+              height={item.height}
+              loading="lazy"
+              decoding="async"
+            />
+          </button>
+          <figcaption>
+            <h3>{item.name}</h3>
+            <p>{item.summary}</p>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+  <p class="carousel__status" data-carousel-status aria-live="polite"></p>
+  <dialog class="lightbox" data-lightbox aria-label="Ảnh phóng to">
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Đóng ảnh">×</button>
+    <img alt="" width="1600" height="1066" />
+  </dialog>
+</section>

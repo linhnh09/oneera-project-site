@@ -1,0 +1,30 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../lib/url";
+---
+
+<BaseLayout
+  title="Chính sách riêng tư — One Era"
+  description="Trang giới thiệu độc lập này không lưu biểu mẫu trên máy chủ và không gắn công cụ phân tích."
+  solidHeader
+>
+  <SiteHeader />
+  <main id="noi-dung" class="page container">
+    <p class="eyebrow">Pháp lý</p>
+    <h1>Chính sách riêng tư</h1>
+    <p>
+      Trang này là website tĩnh. Bản đang chạy không có máy chủ nhận đăng ký, không có tài khoản người dùng và không gắn Google Analytics.
+    </p>
+    <p>
+      Khi chưa cấu hình email nhận, trang không hiện biểu mẫu. Nếu sau này có email trong dữ liệu trang, biểu mẫu chỉ mở ứng dụng thư trên máy bạn. Nội dung nằm trong email đó khi bạn chủ động bấm gửi. Trang không lưu bản sao.
+    </p>
+    <p>
+      Máy chủ lưu trữ website tĩnh có thể ghi nhật ký kỹ thuật như địa chỉ IP và đường dẫn, theo chính sách của nhà cung cấp lưu trữ.
+    </p>
+    <p>Cập nhật: 27/10/2026.</p>
+    <p><a href={withBase("")}>Về trang chủ</a></p>
+  </main>
+  <SiteFooter />
+</BaseLayout>

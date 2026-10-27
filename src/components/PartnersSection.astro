@@ -1,0 +1,25 @@
+---
+import { partners, partnersNote } from "../data/partners";
+---
+
+<section class="section" id="doi-tac" aria-labelledby="partners-title">
+  <div class="container">
+    <p class="eyebrow">Đối tác</p>
+    <h2 class="title" id="partners-title">Tên trong mục đối tác</h2>
+    <div class="partner-grid">
+      {
+        partners.map((group) => (
+          <article>
+            <h3>{group.category}</h3>
+            <ul>
+              {group.names.map((name) => (
+                <li>{name}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+    <p class="source-note">{partnersNote}</p>
+  </div>
+</section>

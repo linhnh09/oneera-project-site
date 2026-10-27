@@ -1,0 +1,46 @@
+---
+import { navigation, project } from "../data/project";
+import { withBase } from "../lib/url";
+---
+
+<header class="site-header" data-header>
+  <p class="disclosure">Trang giới thiệu độc lập — không phải website chính thức</p>
+  <div class="site-header__bar">
+    <a class="wordmark" href={withBase("")}>
+      <strong>ONE ERA</strong>
+      <span>Giới thiệu</span>
+    </a>
+    <nav class="nav-desktop" aria-label="Mục trên trang">
+      {
+        navigation.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))
+      }
+    </nav>
+    <a class="header-cta" href={project.officialSiteUrl} rel="noopener noreferrer">Trang chính thức</a>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      Menu
+    </button>
+  </div>
+</header>
+
+<div id="mobile-menu" class="mobile-menu" hidden data-mobile-menu>
+  <div class="mobile-menu__top">
+    <button class="mobile-menu__close" type="button" data-menu-close>Đóng</button>
+  </div>
+  <nav aria-label="Mục trên trang, bản di động">
+    {
+      navigation.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))
+    }
+    <a href={project.officialSiteUrl} rel="noopener noreferrer">Trang chính thức</a>
+    <a href={withBase("privacy")}>Chính sách riêng tư</a>
+  </nav>
+</div>

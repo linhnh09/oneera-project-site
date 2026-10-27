@@ -1,0 +1,20 @@
+---
+import { developers } from "../data/developers";
+import { project } from "../data/project";
+---
+
+<section class="section" id="nha-phat-trien" aria-labelledby="developer-title">
+  <div class="container">
+    <p class="eyebrow">Nhà phát triển</p>
+    <h2 class="title" id="developer-title">Tên được giới thiệu công khai</h2>
+    <p class="developer-intro lede">
+      Bốn tên dưới đây đứng trong mục nhà phát triển trên website chính thức ngày 27/10/2026. Phần tiểu sử không được chép sang trang này.
+    </p>
+    <ul class="names">
+      {developers.map((name) => <li>{name}</li>)}
+    </ul>
+    <div class="contact-actions">
+      <a class="button" href={project.officialSiteUrl} rel="noopener noreferrer">Đọc giới thiệu gốc</a>
+    </div>
+  </div>
+</section>

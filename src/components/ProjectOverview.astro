@@ -1,0 +1,48 @@
+---
+import { exploreLinks, project } from "../data/project";
+import { withBase } from "../lib/url";
+---
+
+<section class="section" id="tong-quan" aria-labelledby="overview-title">
+  <div class="container overview">
+    <div class="stack">
+      <p class="eyebrow">Tổng quan</p>
+      <h2 class="title" id="overview-title">{project.overviewTitle}</h2>
+      <p class="lede">{project.overviewLead}</p>
+      <p class="prose">{project.overviewBody}</p>
+      <dl class="facts">
+        {
+          project.projectFacts.map((fact) => (
+            <div>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+    <figure class="frame">
+      <img
+        src={withBase("images/overview/residences.webp")}
+        alt="Ảnh minh họa một khối nhà ở, không phải phối cảnh One Era."
+        width="1400"
+        height="1750"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption>Ảnh minh họa có giấy phép Unsplash. Không phải hiện trạng hay phối cảnh dự án.</figcaption>
+    </figure>
+  </div>
+  <div class="container">
+    <div class="explore">
+      {
+        exploreLinks.map((item) => (
+          <a href={item.href} rel={item.external ? "noopener noreferrer" : undefined}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

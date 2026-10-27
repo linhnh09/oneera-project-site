@@ -1,0 +1,21 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../lib/url";
+---
+
+<BaseLayout
+  title="Không tìm thấy trang — One Era"
+  description="Đường dẫn này không có trên trang giới thiệu độc lập về One Era."
+  solidHeader
+>
+  <SiteHeader />
+  <main id="noi-dung" class="page container">
+    <p class="eyebrow">404</p>
+    <h1>Không tìm thấy trang</h1>
+    <p>Đường dẫn không khớp trang nào trên site này.</p>
+    <p><a class="button" href={withBase("")}>Về trang chủ</a></p>
+  </main>
+  <SiteFooter />
+</BaseLayout>

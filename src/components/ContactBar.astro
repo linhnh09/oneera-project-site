@@ -1,0 +1,18 @@
+---
+import { project, telHref } from "../data/project";
+---
+
+<div class="contact-bar" aria-label="Liên hệ nhanh">
+  <a class="button secondary" href="#lien-he">Liên hệ</a>
+  {
+    project.contactPhone ? (
+      <a class="button" href={telHref(project.contactPhone)}>
+        Gọi {project.contactPhone}
+      </a>
+    ) : (
+      <a class="button" href={project.officialSiteUrl} rel="noopener noreferrer">
+        Trang chính thức
+      </a>
+    )
+  }
+</div>
